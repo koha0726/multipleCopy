@@ -4,16 +4,33 @@ import pyperclip
 class ClipboardManager:
 
     def __init__(self, slots=3):
+        self.max_slots = slots
         self.slots = {}
+        self.last_text = ""
 
         for i in range(1, slots + 1):
             self.slots[i] = ""
 
-    def save_to_slot(self, slot):
+    def save_auto(self):
+
         text = pyperclip.paste()
-        self.slots[slot] = text
+
+        if text == self.last_text:
+            return
+
+        self.last_text = text
+
+        # スロットを後ろにずらす
+        for i in range(self.max_slots, 1, -1):
+            self.slots[i] = self.slots[i - 1]
+
+        self.slots[1] = text
+
+        print("Saved:", text)
+        print(self.slots)
 
     def paste_from_slot(self, slot):
+
         text = self.slots.get(slot, "")
 
         if text:

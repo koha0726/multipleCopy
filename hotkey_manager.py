@@ -1,28 +1,20 @@
 import keyboard
+import time
+
 
 class HotkeyManager:
 
     def __init__(self, clipboard_manager):
         self.clipboard_manager = clipboard_manager
 
-# コピーショートカット
-    def register_copy_hotkeys(self):
-        keyboard.add_hotkey(
-            "ctrl+shift+1",
-            lambda: self.clipboard_manager.save_to_slot(1)
-        )
+    def register_copy_hotkey(self):
 
-        keyboard.add_hotkey(
-            "ctrl+shift+2",
-            lambda: self.clipboard_manager.save_to_slot(2)
-        )
+        def on_copy():
+            time.sleep(0.05)
+            self.clipboard_manager.save_auto()
 
-        keyboard.add_hotkey(
-            "ctrl+shift+3",
-            lambda: self.clipboard_manager.save_to_slot(3)
-        )
+        keyboard.add_hotkey("ctrl+c", on_copy)
 
-    # 貼り付けショートカット
     def register_paste_hotkeys(self):
 
         keyboard.add_hotkey(
@@ -40,7 +32,7 @@ class HotkeyManager:
             lambda: self.clipboard_manager.paste_from_slot(3)
         )
 
-    # 登録まとめ
     def register_all(self):
-        self.register_copy_hotkeys()
+
+        self.register_copy_hotkey()
         self.register_paste_hotkeys()
