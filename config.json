@@ -1,0 +1,13 @@
+{
+  "slots": 5,
+  "copy_hotkeys": {
+    "1": "ctrl+shift+1",
+    "2": "ctrl+shift+2",
+    "3": "ctrl+shift+3"
+  },
+  "paste_hotkeys": {
+    "1": "alt+1",
+    "2": "alt+2",
+    "3": "alt+3"
+  }
+}
