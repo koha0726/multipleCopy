@@ -13,7 +13,15 @@ class ClipboardManager:
 
     def save_auto(self):
 
-        text = pyperclip.paste()
+        try:
+            text = pyperclip.paste()
+
+        except Exception as e:
+            print("Clipboard error:", e)
+            return
+
+        if not text:
+            return
 
         if text == self.last_text:
             return

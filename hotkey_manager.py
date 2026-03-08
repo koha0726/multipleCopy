@@ -10,8 +10,14 @@ class HotkeyManager:
     def register_copy_hotkey(self):
 
         def on_copy():
-            time.sleep(0.05)
-            self.clipboard_manager.save_auto()
+            # プリントデバッグ
+            print("Ctrl+C detected")
+            try:
+                time.sleep(0.05)
+                self.clipboard_manager.save_auto()
+
+            except Exception as e:
+                print("Copy error:", e)
 
         keyboard.add_hotkey("ctrl+c", on_copy)
 

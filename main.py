@@ -2,6 +2,8 @@ from clipboard_manager import ClipboardManager
 from hotkey_manager import HotkeyManager
 import keyboard
 
+keyboard.unhook_all()
+
 
 def main():
 
